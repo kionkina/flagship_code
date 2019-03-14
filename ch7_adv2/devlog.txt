@@ -1,0 +1,7 @@
+14-03-2019
+--------------------------------------------------------------------------------------
+TO DO:
+1) Attach radical identifiers to each stroke
+2) Append onlick event to each group 
+3) Use event to record choice, begin working on scoring
+4) Add in time, score, etc (use template)
