@@ -37,7 +37,7 @@ function log_strokes(){
           
             text += " <g class='"+ [characters[c]] +"' id='" + s + "' onclick='manage_click(this)' class='a_stroke' transform='scale(.4, -.4) translate(" + right + "," + down + ")' >" + "<path d='" + strokes[characters[c]][s] + " stroke-width='2' ";
             var rads = radicals[characters[c]];
-           
+               
             //sets current_radical to the group the stroke belongs to
             for (var i=0; i<rads.length;i++){
                 console.log(characters[c]);
@@ -46,16 +46,19 @@ function log_strokes(){
                         break;
                 }
             }
+            
+            //compares current stroke index to previous stroke index, changing the color in response
             if (prev_radical != current_radical){
                 console.log(current_radical);
                 current_color = colors[current_radical];
                 console.log("switch at" + s);
             }
-            
+            //finishing path tag
             text += "fill='" + current_color  + "'" ;
             text +=  "/> </g>";
-            prev_radical = current_radical;  
             
+            //setting previous radical to current
+            prev_radical = current_radical;  
         }   
 
         
@@ -82,7 +85,6 @@ function manage_click(e){
 }
 
 //every character has a 2D array containing the starting and ending strokes of its radicals
-
 
 var answer_key = {"開":[], "務":[], "餘":[], "廣":[], "雖":[], "醫":[], "術":[], "殺":[]};
     
