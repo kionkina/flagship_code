@@ -23,7 +23,7 @@ function getRandomColor() {
 var boop;
 
 function log_strokes(){
-    var text = "<g class='radical_group' id='開0' rad=0>";
+    var text = "<g class='radical_group' id='開0' rad=0 selected=0>";
     var x = 1000;
     var y = 1000;
     var down = -900;
@@ -54,6 +54,7 @@ function log_strokes(){
                 //unique identifier for every radical group
                 var id = characters[c] + current_radical;
                 text += "</g> <g class= 'radical_group' id='" + id + "'";
+                text += "selected = 0 ";
                 text += "rad=" + current_radical + ">";
             }
             
@@ -92,12 +93,28 @@ function log_strokes(){
 
  $(".radical_group").click(function(){     
      var rad = this.getAttribute("rad");
-     var g_tags = document.getElementById(this.id).getElementsByTagName("g");
+     var rad_group = document.getElementById(this.id);
+     //checks if the radical was already selected
+     var isSelected = rad_group.getAttribute("selected");
+     var g_tags = rad_group.getElementsByTagName("g");
+     //if not seelcted, change colors and set selected to true
+     if (isSelected == 0){
+     rad_group.setAttribute("selected", 1);
      for (var i=0; i<g_tags.length; i++){
         //setting the path (firstChild) of each group to the appropriate color in the list
          g_tags[i].firstChild.setAttribute("fill", colors[rad])
+        }
      }
-    //console.log(this);
+     
+     //else, set it to false and remove color
+     else if (isSelected == 1) {
+        rad_group.setAttribute("selected", 0); 
+          for (var i=0; i<g_tags.length; i++){
+        //setting the path (firstChild) of each group to the appropriate color in the list
+         g_tags[i].firstChild.setAttribute("fill", "black")
+        }
+     }
+
 });
 
 //every character has a 2D array containing the starting and ending strokes of its radicals

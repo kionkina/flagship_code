@@ -4,14 +4,15 @@
 * Finished $(.radical_group) onClick function, which uses the identifier to
 loop through every childNode and set every stroke to the appropriate color
 
+* Added deselection functionality
+
 TO DO:
 
-1) Deselection
-2) Keep track of choices
-3) Add in time, score, etc (use template)
+1) Keep track of choices
+2) Add in time, score, etc (use template)
 
-4) Add intermediate Ch7 exercise
-5) Change beginner Ch7 exercise to use my drag and drop
+3) Add intermediate Ch7 exercise
+4) Change beginner Ch7 exercise to use my drag and drop
 
 
 --------------------------------------------------------------------------------------
