@@ -9,7 +9,8 @@ var colors = ["red", "orange", "purple"];
 var characters = ['開', '務', '餘', '廣', '雖', '醫', '術', '殺'];
 
 var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8,14]], "廣": [[0,2], [3,14]], "雖":[[0,8], [9,16]], "醫":[[0,6], [7,10], [11,17]], "術":[[0,2], [3,7], [8,10]], "殺":[[0,5], [6,9]]};
-log_strokes();
+
+var user_answers = [];
 
 function getRandomColor() {
   var letters = '0123456789ABCDEF';
@@ -20,9 +21,48 @@ function getRandomColor() {
   return color;
 }
 
-var boop;
 
-function log_strokes(){
+
+
+function start(){
+    clearInterval();
+    clearTimeout(timeoutID);
+
+    //reset time
+    timeoutID = null;
+    seconds = 0;
+    score = 100;
+    msg = "";
+
+    
+     document.getElementById("timer").style.display = "inline";   
+     document.getElementById("timer2").style.display = "none";   
+    
+
+     document.getElementById("sco").innerHTML = "";
+
+    if (document.getElementById("start_redo")){
+        document.getElementById("start_redo").remove(); 
+    }
+    
+    //reset check div
+    var check_div = document.getElementById("check_div");
+    //console.log(check_div);
+    if (check_div.innerHTML == ""){
+        check_div.innerHTML += "<input type='button' id='btn_check' name='done' value='Check' onclick='result()'> ";
+    }
+    
+    //filling user_answers double array with choice 0's because nothing is selected
+    
+    for(var c=0; c<characters.length; c++){
+        var rads = radicals[characters[c]];
+        var rad_choices = [];
+            for (var i=0; i<rads.length;i++){
+                rad_choices.push(0);
+            }
+            user_answers.push(rad_choices);
+    }
+    
     var text = "<g class='radical_group' id='開0' rad=0 selected=0>";
     var x = 1000;
     var y = 1000;
@@ -87,39 +127,58 @@ function log_strokes(){
         }
       
     }
-       content.innerHTML +=  "<svg height='200px' width='600px' version='1.1' viewBox=' 500 0 " + x + ' ' + y + "' xmlns='http://www.w3.org/2000/svg'>" + text + "</svg>";   
+       game = document.getElementById("game");
+       game.innerHTML +=  "<svg height='200px' width='600px' version='1.1' viewBox=' 500 0 " + x + ' ' + y + "' xmlns='http://www.w3.org/2000/svg'>" + text + "</svg>";   
+    
+        countTime();
+        click();
 }
 
-
+function click(){
  $(".radical_group").click(function(){     
+    
+     console.log("running...");
      var rad = this.getAttribute("rad");
+     var char = this.id[0]; 
      var rad_group = document.getElementById(this.id);
+     
+     
      //checks if the radical was already selected
      var isSelected = rad_group.getAttribute("selected");
      var g_tags = rad_group.getElementsByTagName("g");
+     
+    //index of character in char array and answer array
+    var answer_index = characters.indexOf(char);
+     
      //if not seelcted, change colors and set selected to true
      if (isSelected == 0){
-     rad_group.setAttribute("selected", 1);
-     for (var i=0; i<g_tags.length; i++){
-        //setting the path (firstChild) of each group to the appropriate color in the list
-         g_tags[i].firstChild.setAttribute("fill", colors[rad])
-        }
-     }
+          user_answers[answer_index][rad] = 1;
+          rad_group.setAttribute("selected", 1);
+          for (var i=0; i<g_tags.length; i++){
+               //setting the path (firstChild) of each group to the appropriate color in the list
+               g_tags[i].firstChild.setAttribute("fill", colors[rad])
+               }
+       }//end isSelected == 0
      
      //else, set it to false and remove color
+     //set radical's value to 0 in user_answers
      else if (isSelected == 1) {
+
+         user_answers[answer_index][rad] = 0;
         rad_group.setAttribute("selected", 0); 
           for (var i=0; i<g_tags.length; i++){
         //setting the path (firstChild) of each group to the appropriate color in the list
          g_tags[i].firstChild.setAttribute("fill", "black")
-        }
+        }    
      }
-
 });
+}
+
 
 //every character has a 2D array containing the starting and ending strokes of its radicals
 
-var answer_key = {"開":[], "務":[], "餘":[], "廣":[], "雖":[], "醫":[], "術":[], "殺":[]};
+
+var answer_key = {"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
     
     
   

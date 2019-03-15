@@ -1,9 +1,5 @@
 
-    var timeoutID = null;
-    var seconds = 0;
-    var score = 100;
-    var msg;
-
+  
 function countTime()
 {
     seconds = seconds + 1;
@@ -78,14 +74,22 @@ function shuffle(arr) {
 }
 
 
-
-var game = document.getElementById('game');
-
-game.innerHTML= "";
-
-
 //start function runs when user hit start button
 //timer starts running
+function result(){
+    
+    //only add text if it's empty
+    if (this.document.getElementById("sco").innerHTML == ""){
+           getTimeSpent();
+         //console.log("total_correct: " + total_correct);
+           correct = Math.round((correct/answers.length)* 100);
+         this.document.getElementById("sco").innerHTML += "Score: " + correct + " %";  
+ }
+    document.getElementById('check_div').innerHTML = '<button type="button" id="start_redo" value="Redo" font-size:36px;height:50px; width:170px onclick="start()"> Redo </button>';
+ 
+    //add in other things that you need to reset
+   
+}   
 
 
 function start(){
@@ -114,7 +118,6 @@ document.getElementById("start_redo").remove();
 
 //reset check div
 var check_div = document.getElementById("check_div");
-
 //console.log(check_div);
 if (check_div.innerHTML == ""){
     check_div.innerHTML += "<input type='button' id='btn_check' name='done' value='Check' onclick='result()'> ";
@@ -125,27 +128,10 @@ if (game.innerHTML != ""){
     game.innerHTML = "";
 }
 
-//stuff
-
-  
+//STUFF
+    
     countTime();
 }
    
 
-                                           
-
-function result(){
-    
-    //only add text if it's empty
-    if (this.document.getElementById("sco").innerHTML == ""){
-           getTimeSpent();
-         //console.log("total_correct: " + total_correct);
-           correct = Math.round((correct/answers.length)* 100);
-         this.document.getElementById("sco").innerHTML += "Score: " + correct + " %";  
- }
-    document.getElementById('check_div').innerHTML = '<button type="button" id="start_redo" value="Redo" font-size:36px;height:50px; width:170px onclick="start()"> Redo </button>';
- 
-    //add in other things that you need to reset
-   
-}   
 

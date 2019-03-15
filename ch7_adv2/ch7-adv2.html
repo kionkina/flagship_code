@@ -8,12 +8,60 @@
          border-top: 2px solid rgba(0,0,0,.1) !important;
         }
 
+        
+   
+        
         #terms td{
             font-size: 5rem;
             padding: 20px;
-            border: 1px solid black;
+            cursor:pointer;
+            border: none;
+            /*this prevents the charcaters from being highlighted*/
+            webkit-user-select: none; /* Safari */        
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+}
     
+        
+        .check {
+            float: right;
+            font-size: 40px;
+            text-align: center;
+            background-color: none;
+            visibility: hidden;
         }
+    
+        #start_redo{
+          letter-spacing: 1px;
+    border: 5px solid transparent;
+    padding: 2px;
+    border-radius: 10px;
+    border-spacing: 50px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    height: 50px;
+    background-color: #9b9b9b;
+    color: white;   
+    cursor:pointer;
+            
+            
+        }
+        
+        
+         .radical_group:hover{
+            cursor: pointer; 
+        }
+        
+        .a_stroke:hover{
+            cursor: pointer; 
+        }
+        
         .char {
         font-size: 30px;
         }
@@ -32,17 +80,10 @@
     padding-right: 20px;
     font-size: 20px;
     height: 50px;
-    background-color: green;
+    background-color: darkgrey;
     color: white;
         }
         
-        .radical_group:hover{
-            cursor: pointer; 
-        }
-        
-        .a_stroke:hover{
-            cursor: pointer; 
-        }
       
       </style>
     
@@ -71,7 +112,7 @@
 	<meta name="theme-color" content="#ffffff">
 
     <title>Frequently Used Characters</title>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/svg.js/3.0.11/svg.js"></script>
+
 	<!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
@@ -151,7 +192,7 @@
 		 </div>
         <!-- Page Content -->
         <div id="page-content-wrapper">
-            <h2 class="exer_title">Ch 7 - Advanced Exercise 1 </h2>
+            <h2 class="exer_title">Ch 7 - Advanced Exercise  </h2>
             
         
             
@@ -161,31 +202,42 @@
 
 
 <div class="container-fluid font_kai">
-    <center>
-    <br> 
+   <center text-align="left">
+    <br> <div width="20%">
+        <h6>
+          
+	  <!-- INSTRUCTIONS HERE -->
+        
+            <Br><br> Click "Check" when you're finished</Br> </h6> <br>
+        </div>
+
+     
     
-        <div id="content"> </div>
+     <input type='button' id='start_redo'  value='Start' onclick='start()'>
         
-        <script src="ch7-adv2.js"></script>
+        
+    <div id="game"></div> 
 
         
-
-
+        
     </center>
 
-
-
-            
-      
-
+  <script src="functions.js"></script>
+  <script src="ch7-adv2.js"></script> 
+  
 
 
    </div>
        <center>
     <!-- /#wrapper -->
     <br>
+           <div id="check_div"></div>
            
-
+           <br>
+           <div width="500px" style="padding-right: 0px; font-size:32px; color:black;" id="sco"> </div>	
+		<div width="450px" style="padding-right: 0px; font-size:32px; color: black;">Time: <a id="timer">00:00</a><a id="timer2"></a></div>		
+           <div class="no_jump" style="padding-right: 0px; padding-left: 0px;" align="left"></div>
+       
            
            
            <Br>
@@ -194,8 +246,11 @@
 <div id="footer" >
  
 			<table>
-
+                
+				<tr>
+                    <td onclick=" javascript:window.location.href='http://jimmy.materials.chineseforall.org/ch8-ex-beg2.html'"><h4>Back</h4></td>
                     <td onclick=" javascript:window.location.href='http://jimmy.materials.chineseforall.org/ch8-ex-beg2.html'"><h4>Next</h4></td>
+                
 				</tr>
 			</table>
 		</div>
