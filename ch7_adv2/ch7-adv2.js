@@ -6,7 +6,7 @@ var strokes = {"務":["M 366 601 Q 462 697 490 709 Q 506 715 501 729 Q 498 742 4
 
 
 var colors = ["red", "orange", "purple"];
-var characters = ["開", "務", "餘", "廣", "雖", "醫", "術", "殺"];
+var characters = ['開', '務', '餘', '廣', '雖', '醫', '術', '殺'];
 
 var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8,14]], "廣": [[0,2], [3,14]], "雖":[[0,8], [9,16]], "醫":[[0,6], [7,10], [11,17]], "術":[[0,2], [3,7], [8,10]], "殺":[[0,5], [6,9]]};
 log_strokes();
@@ -23,7 +23,7 @@ function getRandomColor() {
 var boop;
 
 function log_strokes(){
-    var text = "<g class='stroke_group' id=0 char='" + characters[0] + "'>";
+    var text = "<g class='radical_group' id='開0' rad=0>";
     var x = 1000;
     var y = 1000;
     var down = -900;
@@ -51,7 +51,10 @@ function log_strokes(){
             }  
             
             if (current_radical != prev_radical){
-                text += "</g> <g class= 'stroke_group id='" + current_radical + "' char='" + characters[c] + "'>";
+                //unique identifier for every radical group
+                var id = characters[c] + current_radical;
+                text += "</g> <g class= 'radical_group' id='" + id + "'";
+                text += "rad=" + current_radical + ">";
             }
             
             //adds character class to each <g> tag   
@@ -87,28 +90,14 @@ function log_strokes(){
 }
 
 
-/*
-function manage(){
-    console.log(this);
-    this.fill = colors[this.id];
-     boop = this.getElementsByTagName("path");
-     for (var i=0; i<boop.length; i++){
-         boop[i].setAttribute('fill', colors[this.id]);
- }  
-}*/
-
- $(".stroke_group").click(function(){
-     var char = this.getAttribute("char");
-     var rad = this.id;
-     console.log(char);
-     console.log(rad);
-     
-     this.fill = colors[this.id];
-     boop = this.getElementsByTagName("g");
-     for (var i=0; i<boop.length; i++){
-         boop[i].setAttribute('fill', colors[this.id]);
- }
-    console.log(this);
+ $(".radical_group").click(function(){     
+     var rad = this.getAttribute("rad");
+     var g_tags = document.getElementById(this.id).getElementsByTagName("g");
+     for (var i=0; i<g_tags.length; i++){
+        //setting the path (firstChild) of each group to the appropriate color in the list
+         g_tags[i].firstChild.setAttribute("fill", colors[rad])
+     }
+    //console.log(this);
 });
 
 //every character has a 2D array containing the starting and ending strokes of its radicals
