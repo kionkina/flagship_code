@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+      
+    <style>
+       
+        hr{     
+         border-top: 2px solid rgba(0,0,0,.1) !important;
+        }
+
+        
+   
+        
+        #terms td{
+            font-size: 5rem;
+            padding: 20px;
+            cursor:pointer;
+            border: none;
+            /*this prevents the charcaters from being highlighted*/
+            webkit-user-select: none; /* Safari */        
+            -moz-user-select: none; /* Firefox */
+            -ms-user-select: none; /* IE10+/Edge */
+            user-select: none; /* Standard */
+}
+    
+        
+        .check {
+            float: right;
+            font-size: 40px;
+            text-align: center;
+            background-color: none;
+            visibility: hidden;
+        }
+    
+        #start_redo{
+          letter-spacing: 1px;
+    border: 5px solid transparent;
+    padding: 2px;
+    border-radius: 10px;
+    border-spacing: 50px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    height: 50px;
+    background-color: #9b9b9b;
+    color: white;   
+    cursor:pointer;
+            
+            
+        }
+        
+        .char {
+        font-size: 30px;
+        }
+        
+        input#btn_check{
+      letter-spacing: 1px;
+    border: 5px solid transparent;
+    padding: 2px;
+    border-radius: 10px;
+    border-spacing: 50px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
+    font-size: 20px;
+    height: 50px;
+    background-color: darkgrey;
+    color: white;
+        }
+        
+      
+      </style>
+    
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<link rel="apple-touch-icon" sizes="57x57" href="images/favicon/apple-icon-57x57.png">
+	<link rel="apple-touch-icon" sizes="60x60" href="images/favicon/apple-icon-60x60.png">
+	<link rel="apple-touch-icon" sizes="72x72" href="images/favicon/apple-icon-72x72.png">
+	<link rel="apple-touch-icon" sizes="76x76" href="images/favicon/apple-icon-76x76.png">
+	<link rel="apple-touch-icon" sizes="114x114" href="images/favicon/apple-icon-114x114.png">
+	<link rel="apple-touch-icon" sizes="120x120" href="images/favicon/apple-icon-120x120.png">
+	<link rel="apple-touch-icon" sizes="144x144" href="images/favicon/apple-icon-144x144.png">
+	<link rel="apple-touch-icon" sizes="152x152" href="images/favicon/apple-icon-152x152.png">
+	<link rel="apple-touch-icon" sizes="180x180" href="images/favicon/apple-icon-180x180.png">
+	<link rel="icon" type="image/png" sizes="192x192" href="images/favicon/android-icon-192x192.png">
+	<link rel="icon" type="image/png" sizes="32x32" href="images/favicon/favicon-32x32.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="images/favicon/favicon-96x96.png">
+	<link rel="icon" type="image/png" sizes="16x16" href="images/favicon/favicon-16x16.png">
+      
+      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+      
+	<link rel="manifest" href="images/favicon/manifest.json">
+	<meta name="msapplication-TileColor" content="#ffffff">
+	<meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+	<meta name="theme-color" content="#ffffff">
+
+    <title>Frequently Used Characters</title>
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <script>
+  (function(d) {
+    var config = {
+      kitId: 'jdh3skg',
+      scriptTimeout: 3000,
+      async: true
+    },
+    h=d.documentElement,t=setTimeout(function(){h.className=h.className.replace(/\bwf-loading\b/g,"")+" wf-inactive";},config.scriptTimeout),tk=d.createElement("script"),f=false,s=d.getElementsByTagName("script")[0],a;h.className+=" wf-loading";tk.src='https://use.typekit.net/'+config.kitId+'.js';tk.async=true;tk.onload=tk.onreadystatechange=function(){a=this.readyState;if(f||a&&a!="complete"&&a!="loaded")return;f=true;clearTimeout(t);try{Typekit.load(config)}catch(e){}};s.parentNode.insertBefore(tk,s)
+  })(document);
+</script>  
+      
+   
+      
+      
+	<script src="http://jimmy.materials.chineseforall.org/js/menu.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+
+	<link href="http://jimmy.materials.chineseforall.org/css/sidebar.css" rel="stylesheet">
+	<link href="http://jimmy.materials.chineseforall.org/css/literacy.css" rel="stylesheet">
+
+  </head>
+  <body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <div id="wrapper">
+        <!-- Sidebar -->
+          <script src="http://jimmy.materials.chineseforall.org/js/menu.js"></script>
+        <div id="sidebar-wrapper">
+            <ul class="sidebar-nav">
+                <br>
+                <li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-1.html">1. Frequently Used Characters</a>
+                </li>
+                <li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-2.html">2. Chinese Literacy Foundation</a>
+                </li>
+                <li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-3.html">3. Word-forming Capabilities</a>
+                </li>
+                <li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-4.html">4. Learning 1,000 Characters</a>
+                </li>
+				<li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-5.html">5. Setting Up a Study Plan</a>
+                </li>
+                <br>
+				<li>
+					<a href="ch8-ex-beg.html">Beginner Exercises</a>
+				</li>
+				<li>
+					<a href="ch8-ex-inter.html">Intermediate Exercises</a>
+				</li>
+				<li>
+					<a href="ch8-ex-adv.html">Advanced Exercises</a>
+				</li>
+                <br>
+				<li>
+                    <a href="http://jimmy.materials.chineseforall.org/ch8-index.html">Back to Chapter 8 Home</a>
+                </li>
+				<li>
+                    <a href="http://jimmy.materials.chineseforall.org/index.html">Back to Volume 1 Home</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /#sidebar-wrapper -->
+		<div id="above-footer">
+		<div id="header">
+			<div class="menu" onclick="menu(this)">
+			  <div class="bar1"></div>
+			  <div class="bar2"></div>
+			  <div class="bar3"></div>
+			</div>
+			<div class="title"><h3>Chinese Literacy Vol.1</h3></div>
+		 </div>
+        <!-- Page Content -->
+        <div id="page-content-wrapper">
+            <h2 class="exer_title">Ch 7 - Advanced Exercise  </h2>
+            
+        
+            
+            
+<body>
+        
+
+
+<div class="container-fluid font_kai">
+   <center text-align="left">
+    <br> <div width="20%">
+        <h6>
+          
+	  <!-- INSTRUCTIONS HERE -->
+        
+            <Br><br> Click "Check" when you're finished</Br> </h6> <br>
+        </div>
+
+     
+    
+     <input type='button' id='start_redo'  value='Start' onclick='start()'>
+        
+        
+    <div id="game"></div> 
+
+        
+        
+    </center>
+<!-- Link to JS here --
+  <script src="ch7-adv1.js"></script> >
+  
+
+
+   </div>
+       <center>
+    <!-- /#wrapper -->
+    <br>
+           <div id="check_div"></div>
+           
+           <br>
+           <div width="500px" style="padding-right: 0px; font-size:32px; color:black;" id="sco"> </div>	
+		<div width="450px" style="padding-right: 0px; font-size:32px; color: black;">Time: <a id="timer">00:00</a><a id="timer2"></a></div>		
+           <div class="no_jump" style="padding-right: 0px; padding-left: 0px;" align="left"></div>
+       
+           
+           
+           <Br>
+		    
+		
+<div id="footer" >
+ 
+			<table>
+                
+				<tr>
+                    <td onclick=" javascript:window.location.href='http://jimmy.materials.chineseforall.org/ch8-ex-beg2.html'"><h4>Back</h4></td>
+                    <td onclick=" javascript:window.location.href='http://jimmy.materials.chineseforall.org/ch8-ex-beg2.html'"><h4>Next</h4></td>
+                
+				</tr>
+			</table>
+		</div>
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    </div> 
+    <script src="js/showhide.js"></script>
+  </body>
+            </center>
+</html>

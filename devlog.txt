@@ -1,13 +1,16 @@
 --------------------------------------------------------------------------------------
 15-03-2019
 
-* Finished $(.radical_group) onClick function, which uses the identifier to
+* Finish $(.radical_group) onClick function, which uses the identifier to
 loop through every childNode and set every stroke to the appropriate color
 
-* Added deselection functionality
+* Add deselection functionality
+
+* Add templates folder:
+  functions.js contains shuffle(), time functions, start(), and result()
+  page_setup.js contains start button, timer tags, etc.
 
 TO DO:
-
 1) Keep track of choices
 2) Add in time, score, etc (use template)
 
