@@ -1,0 +1,29 @@
+--------------------------------------------------------------------------------------
+15-03-2019
+
+* Finished $(.radical_group) onClick function, which uses the identifier to
+loop through every childNode and set every stroke to the appropriate color
+
+TO DO:
+
+1) Deselection
+2) Keep track of choices
+3) Add in time, score, etc (use template)
+
+4) Add intermediate Ch7 exercise
+5) Change beginner Ch7 exercise to use my drag and drop
+
+
+--------------------------------------------------------------------------------------
+14-03-2019
+
+TO DO:
+1) Attach radical identifiers to each stroke
+2) Append onlick event to each group 
+3) Use event to record choice, begin working on scoring
+4) Add in time, score, etc (use template)
+
+TODO:
+1) Add intermediate Ch7 exercise
+2) Change beginner Ch7 exercise to use my drag and drop
+--------------------------------------------------------------------------------------
