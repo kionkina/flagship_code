@@ -57,7 +57,6 @@ var x = setInterval(function() {
 function shuffle(arr) {
     var ctr = arr.length
     var temp;
-    var ans_temp;
     var index;
 
 // While there are elements in the array
@@ -68,11 +67,8 @@ function shuffle(arr) {
         ctr--;
 // And swap the last element with it
         temp = arr[ctr];
-        ans_temp = answers[ctr];
         arr[ctr] = arr[index];
-        answers[ctr] = answers[index];
         arr[index] = temp;
-        answers[index] = ans_temp;
     }
     return arr;
 }
@@ -87,7 +83,7 @@ game.innerHTML= "";
 //start function runs when user hit start button
 //timer starts running
 
-
+/*
 function start(){
 
 choices = shuffle(choices);
@@ -148,4 +144,4 @@ function result(){
     //add in other things that you need to reset
    
 }   
-
+*/

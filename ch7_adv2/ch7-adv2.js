@@ -8,23 +8,16 @@ var strokes = {"務":["M 366 601 Q 462 697 490 709 Q 506 715 501 729 Q 498 742 4
 var colors = ["red", "orange", "purple"];
 var characters = ['開', '務', '餘', '廣', '雖', '醫', '術', '殺'];
 
+//every character has a 2D array containing the starting and ending strokes of its radicals
+var answer_key = {"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
 var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8,14]], "廣": [[0,2], [3,14]], "雖":[[0,8], [9,16]], "醫":[[0,6], [7,10], [11,17]], "術":[[0,2], [3,7], [8,10]], "殺":[[0,5], [6,9]]};
 
 var user_answers = [];
 
-function getRandomColor() {
-  var letters = '0123456789ABCDEF';
-  var color = '#';
-  for (var i = 0; i < 6; i++) {
-    color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
-
-
 
 
 function start(){
+//   characters = shuffle(characters);
     clearInterval();
     clearTimeout(timeoutID);
 
@@ -106,7 +99,7 @@ function start(){
             text += " class='a_stroke' transform='scale(.4, -.4) translate(" + right + "," + down + ")' >"; 
             
             //SVG path from dictionary
-            text += "<path d='" + strokes[characters[c]][s] + " stroke-width='2' ";
+            text += "<path d='" + strokes[characters[c]][s] + "' ";
             
             //text += "fill='" + colors[current_radical]  + "'" ;
             text +=  "/> </g>";
@@ -128,7 +121,8 @@ function start(){
       
     }
        game = document.getElementById("game");
-       game.innerHTML +=  "<svg height='200px' width='600px' version='1.1' viewBox=' 500 0 " + x + ' ' + y + "' xmlns='http://www.w3.org/2000/svg'>" + text + "</svg>";   
+    
+       game.innerHTML =  "<svg height='200px' width='600px' version='1.1' viewBox=' 500 0 " + x + ' ' + y + "' xmlns='http://www.w3.org/2000/svg'>" + text + "</svg>";   
     
         countTime();
         click();
@@ -137,7 +131,6 @@ function start(){
 function click(){
  $(".radical_group").click(function(){     
     
-     console.log("running...");
      var rad = this.getAttribute("rad");
      var char = this.id[0]; 
      var rad_group = document.getElementById(this.id);
@@ -174,11 +167,75 @@ function click(){
 });
 }
 
+function result(){
+    console.log("running...");
+    var right = 70;
+    var down = 0;
+    var correct = 0;
+    for (var c=0; c < user_answers.length; c++){
+        var char = characters[c];
+        
+        console.log(char);
+      
+        console.log(down);
+        
+            var g =  document.getElementById(char+"0")
+            var path = g.children[0];
+            
+         
+            var transform = "scale(6,6)" + "translate(" + right +","+ down + ")";
+            
+            //creating new g with same translate, diff scale
+            var check = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            check.setAttribute("transform", transform);
+            
+            //creating new path for the check
+            var new_path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        
+    
+        //comparing two arrays in js doesn't work without JSON.stringify
+        if (JSON.stringify(user_answers[c]) == JSON.stringify(answer_key[char])){
+            
+            //log correctness
+            correct += 1;
+            //add an svg checkmark :)
+            new_path.setAttribute("d", " M0 12.116l2.053-1.897c2.401 1.162 3.924 2.045 6.622 3.969 5.073-5.757 8.426-8.678 14.657-12.555l.668 1.536c-5.139 4.484-8.902 9.479-14.321 19.198-3.343-3.936-5.574-6.446-9.679-10.251z")
+            new_path.setAttribute("fill", "green");
+            ; 
+        }
+        
+        //append x mark :(
+        else {
+            new_path.setAttribute("d", "M24 3.752l-4.423-3.752-7.771 9.039-7.647-9.008-4.159 4.278c2.285 2.885 5.284 5.903 8.362 8.708l-8.165 9.447 1.343 1.487c1.978-1.335 5.981-4.373 10.205-7.958 4.304 3.67 8.306 6.663 10.229 8.006l1.449-1.278-8.254-9.724c3.287-2.973 6.584-6.354 8.831-9.245z" );
+            new_path.setAttribute("fill", "red");
+        }
+            check.appendChild(new_path);
+            g.appendChild(check);
+            
+        if (right+100 > 380){
+                right = 70;
+                down += 100;
+            }
+        else {
+                right += 100;
+            }
+                
+    }
+    
+    
+    //----------------------------------------------------------------------------------
+      //only add text if it's empty
+    if (this.document.getElementById("sco").innerHTML == ""){
+           getTimeSpent();
+         console.log("total_correct: " + correct);
+        var length=characters.length;
+        correct = Math.round((correct/length)* 100);
+        this.document.getElementById("sco").innerHTML += "Score: " + correct + " %";  
+ }
+    document.getElementById('check_div').innerHTML = '<button type="button" id="start_redo" value="Redo" font-size:36px;height:50px; width:170px onclick="start()"> Redo </button>';
+    $(".radical_group").off("click");
+}
 
-//every character has a 2D array containing the starting and ending strokes of its radicals
-
-
-var answer_key = {"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
     
     
   

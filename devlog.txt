@@ -17,11 +17,14 @@ loop through every childNode and set every stroke to the appropriate color
 * Restructure code to fit template format
   It now contains start button and functioning timer
 
-TO DO:
-1) Add score function
+* Add result()
+  Calculates total score
+  Adds svg check marks and crosses to respective choices
+  Removes onclick event from radicals
 
-3) Add intermediate Ch7 exercise
-4) Change beginner Ch7 exercise to use my drag and drop
+TO DO:
+1) Add intermediate Ch7 exercise
+2) Change beginner Ch7 exercise to use my drag and drop
 
 
 --------------------------------------------------------------------------------------
