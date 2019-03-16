@@ -40,7 +40,7 @@ function start(){
     
     //reset check div
     var check_div = document.getElementById("check_div");
-    //console.log(check_div);
+    ////console.log(check_div);
     if (check_div.innerHTML == ""){
         check_div.innerHTML += "<input type='button' id='btn_check' name='done' value='Check' onclick='result()'> ";
     }
@@ -67,7 +67,7 @@ function start(){
     
     
     for (var c=0; c<characters.length; c++){
-    //console.log(strokes[characters[c]]);
+    ////console.log(strokes[characters[c]]);
         var str = "";
         //loops through dictionary of paths 
         for (var s=0; s < strokes[characters[c]].length; s++ ){
@@ -76,7 +76,7 @@ function start(){
             var rads = radicals[characters[c]];
             
             for (var i=0; i<rads.length;i++){
-                console.log(characters[c]);
+                //console.log(characters[c]);
                 if (s >= rads[i][0] && s <= rads[i][1]){
                         current_radical = i;
                         break;
@@ -168,16 +168,16 @@ function click(){
 }
 
 function result(){
-    console.log("running...");
+    //console.log("running...");
     var right = 70;
     var down = 0;
     var correct = 0;
     for (var c=0; c < user_answers.length; c++){
         var char = characters[c];
         
-        console.log(char);
+        //console.log(char);
       
-        console.log(down);
+        //console.log(down);
         
             var g =  document.getElementById(char+"0")
             var path = g.children[0];
@@ -227,7 +227,7 @@ function result(){
       //only add text if it's empty
     if (this.document.getElementById("sco").innerHTML == ""){
            getTimeSpent();
-         console.log("total_correct: " + correct);
+         //console.log("total_correct: " + correct);
         var length=characters.length;
         correct = Math.round((correct/length)* 100);
         this.document.getElementById("sco").innerHTML += "Score: " + correct + " %";  
