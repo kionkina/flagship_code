@@ -1,8 +1,4 @@
 
-    var timeoutID = null;
-    var seconds = 0;
-    var score = 100;
-    var msg;
 
 function countTime()
 {
@@ -75,9 +71,7 @@ function shuffle(arr) {
 
 
 
-var game = document.getElementById('game');
 
-game.innerHTML= "";
 
 
 //start function runs when user hit start button
