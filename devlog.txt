@@ -4,6 +4,10 @@
 * Made updates to linkage website
 * Fixed the redo problem
 
+TO DO:
+* Make only one radical clickable at a time
+* Randomize choices
+* Replace beginner exercise with my drag & drop (add to templates)
 --------------------------------------------------------------------------------------
 16-03-2019
 
