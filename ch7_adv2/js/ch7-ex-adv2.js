@@ -12,9 +12,13 @@ var strokes = {"務":["M 366 601 Q 462 697 490 709 Q 506 715 501 729 Q 498 742 4
 
 var colors = ["red", "orange", "purple"];
 var characters = ['開', '務', '餘', '廣', '雖', '醫', '術', '殺'];
+var answers = [[0,1],[0,1],[0,1],[1,0],[1,0],[1,0,0],[0,1,0],[1,0]];
 
 //every character has a 2D array containing the starting and ending strokes of its radicals
-var answer_key = {"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
+var answer_key = {}; 
+	//{"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
+
+
 var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8,14]], "廣": [[0,2], [3,14]], "雖":[[0,8], [9,16]], "醫":[[0,6], [7,10], [11,17]], "術":[[0,2], [3,7], [8,10]], "殺":[[0,5], [6,9]]};
 
 var user_answers = [];
@@ -26,14 +30,20 @@ function start(){
 //   characters = shuffle(characters);
     clearInterval();
     clearTimeout(timeoutID);
-
     //reset time
     timeoutID = null;
     seconds = 0;
     score = 100;
     msg = "";
 
-    
+   shuffle(characters, answers);
+	
+	for (var i =0; i<answers.length; i++){
+		answer_key[characters[i]] = answers[i];
+	}
+	
+	console.log(answer_key);
+	
      document.getElementById("timer").style.display = "inline";   
      document.getElementById("timer2").style.display = "none";   
     
@@ -62,7 +72,8 @@ function start(){
             user_answers.push(rad_choices);
     }
     
-    var text = "<g class='radical_group' id='開0' rad=0 selected=0>";
+	var first_id = characters[0] + "0";
+    var text = "<g class='radical_group' id='" + first_id + "' rad=0 selected=0>";
     var x = 1000;
     var y = 1000;
     var down = -900;

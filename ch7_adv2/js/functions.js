@@ -49,10 +49,11 @@ var x = setInterval(function() {
 }, 1000);
 
 
-//might need shuffle
-function shuffle(arr) {
+//returens [shuffled arr, shuffled answers]
+function shuffle(arr, answers) {
     var ctr = arr.length
     var temp;
+    var ans_temp;
     var index;
 
 // While there are elements in the array
@@ -63,12 +64,13 @@ function shuffle(arr) {
         ctr--;
 // And swap the last element with it
         temp = arr[ctr];
+        ans_temp = answers[ctr];
         arr[ctr] = arr[index];
+        answers[ctr] = answers[index];
         arr[index] = temp;
+        answers[index] = ans_temp;
     }
-    return arr;
 }
-
 
 
 
