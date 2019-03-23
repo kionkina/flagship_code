@@ -42,7 +42,7 @@ function start(){
 		answer_key[characters[i]] = answers[i];
 	}
 	
-	console.log(answer_key);
+	
 	
      document.getElementById("timer").style.display = "inline";   
      document.getElementById("timer2").style.display = "none";   
