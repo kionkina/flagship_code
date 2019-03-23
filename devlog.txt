@@ -1,4 +1,12 @@
 --------------------------------------------------------------------------------------
+23-03-2019
+
+* Make only one radical selectable at a time
+
+TO DO:
+* Replace beginner exercise with my drag & drop (add to templates)
+* Randomize choices
+--------------------------------------------------------------------------------------
 21-03-2019
 
 * Made updates to linkage website
