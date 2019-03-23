@@ -148,14 +148,17 @@ function click(){
      
     //index of character in char array and answer array
     var answer_index = characters.indexOf(char);
+	//console.log(user_answers[answer_index]);
+	
      
      //if not seelcted, change colors and set selected to true
-     if (isSelected == 0){
+     if (isSelected == 0 && user_answers[answer_index].toString() == [0,0].toString() ||
+							user_answers[answer_index].toString() == [0,0,0].toString()) {
           user_answers[answer_index][rad] = 1;
           rad_group.setAttribute("selected", 1);
           for (var i=0; i<g_tags.length; i++){
                //setting the path (firstChild) of each group to the appropriate color in the list
-               g_tags[i].firstChild.setAttribute("fill", colors[rad])
+               g_tags[i].firstChild.setAttribute("fill", "purple")
                }
        }//end isSelected == 0
      
@@ -186,7 +189,7 @@ function result(){
         //console.log(down);
         
 			
-			console.log(char+"0");
+			//console.log(char+"0");
             var g =  document.getElementById(char+"0");
             var path = g.children[0];
             
