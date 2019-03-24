@@ -1,16 +1,38 @@
+
 var correctCards = 0;
-//var text = ['di1', 'tou2', 'si1', 'gu4', 'xiang1'];
-
-//var terms = ['t', 's', 'd', 'g', 'x'];
-var terms = ['台','对','刚','汉','后','开','宝','长','坏', '欢'];
-
-//var correctness = [0, 0, 0, 0, 0];
-
 var timeoutID = null;
 var seconds = 0;
+var quz_length = 10;	
 
-var startPos;
+var text =  ['台','对','刚','汉','后','开','宝','长','坏', '欢'];
+var term_array = ['臺', '對','剛','漢','後','開','寶','長','壞', '歡'];
+var ans_array =   ['台','对','刚','汉','后','开','宝','长','坏', '欢'];
 
+var correctness = [0,0,0,0,0,0,0,0,0,0];
+
+
+//returns [shuffled arr, shuffled answers]
+function shuffle(arr, answers) {
+    var ctr = arr.length
+    var temp;
+    var ans_temp;
+    var index;
+
+// While there are elements in the array
+    while (ctr > 0) {
+// Pick a random index
+        index = Math.floor(Math.random() * ctr);
+// Decrease ctr by 1
+        ctr--;
+// And swap the last element with it
+        temp = arr[ctr];
+        ans_temp = answers[ctr];
+        arr[ctr] = arr[index];
+        answers[ctr] = answers[index];
+        arr[index] = temp;
+        answers[index] = ans_temp;
+    }
+}
 
 $( init );
 
@@ -50,6 +72,19 @@ function getTimeSpent()
 
 function init() {
 
+
+shuffle(term_array, ans_array);
+	
+var terms = document.getElementById("terms");
+
+for (var i=0; i<term_array.length; i++){
+	
+	terms.innerHTML += "<tr>";
+	terms.innerHTML += "<td style='text-align: right'  width='20px'><a id='incorrect_" + i + "' class='mark_ex6' href='#'>&#10008;</a><a  id='correct_" + i  + "' class='mark_correct_ex6' href='#'>&#10004;</a></td><td> <div class='e5_width font_kai'>" + "<font color='#484848'>" + (i+1) +  "</font>&nbsp;&nbsp;&nbsp; " +  term_array[i] + "</div></td></tr>"; 
+	
+}
+
+	
   // Hide the success message
   $('#successMessage').hide();
   $('#successMessage').css( {
@@ -63,39 +98,104 @@ function init() {
   correctCards = 0;
   $('#cardPile').html( '' );
   $('#cardSlots').html( '' );
-	
- 	for ( var i=0; i<correctness.length; i++ ) {
-    $('<div>' + text[random2_array[i]-1] + '</div>').data( 'term', terms[random2_array[i]-1] ).data('id', i).attr( 'id', 'card'+ (i+1) ).appendTo( '#cardPile' ).draggable( { 
-      stack: '#cardPile div',
-      cursor: 'move',
-      revert: true,
-	  drag: handleCardDrag,
-	  start: origPos
-    } );
-  }
-	
-	
-	for ( var i=0; i<correctness.length; i++ ) {
-		//$('<div>'+ term_array[random1_array[i]-1] +'</div>').data( 'term', terms[random1_array[i]-1] ).appendTo( '#cardSlots' ).droppable( {
-			$('<div>'+ term_array[random1_array[i]-1] + '</div>').data( 'term', terms[random1_array[i]-1] ).appendTo( '#cardSlots' ).droppable( {
-			
+  $('#DROP').html('');
+    
+    
+    
+    	for ( var i=0; i<correctness.length; i++ ) {
+			$('<div> </div>').data( 'term', ans_array[i] ).attr('id',i).data('holding', false).appendTo( '#cardSlots' ).droppable( {
 			accept: '#cardPile div',
 			hoverClass: 'hovered',
 			drop: handleCardDrop
     } );
-  }
+        
+}
 
+    
+ 
+		for ( var i=0; i<correctness.length; i++ ) {
+    $('<div></div>').attr('id',"card_drop" + i).attr('style', 'background-color: lightgrey; box-shadow: none;').appendTo( '#cardPile' ).droppable( {
+            accept:'#cardPile div',
+			hoverClass: 'hovered',
+            revert: 'invalid',
+            drop: handleCardDrop2
+});
+        }
+ 
+
+    
+    
+    for ( var i=0; i<correctness.length; i++ ) {
+       $('<div>' + text[i] + '</div>').data( 'term', text[i] ).data('id', i).attr( 'id', 'card'+ (i+1)).attr('style', 'top:-18px;left:-110px').data('answerStack', null).appendTo('#card_drop' + i).draggable( { 
+      cursor: 'move',
+      revert: true,
+	  drag: handleCardDrag,
+    } );
+    
+    }
+        
+
+
+
+
+}
+	
+
+//dropping at cardpile slots
+function handleCardDrop2(event, ui){
+  
+   //indicating that its last answer slot is now empty
+    if (ui.draggable.data('answerStack') != null){
+    var oldSlot = ui.draggable.data('answerStack');
+    $(oldSlot).data('holding',false);
+	console.log(oldSlot[0].id);
+	correctness[oldSlot[0].id] = 0;
+    }   
+    
+    ui.draggable.position( { of: $(this) } );
+   // $(this).droppable('disable');
+      ui.draggable.draggable( { 
+      revert: 'invalid',
+	  drag: handleCardDrag,
+    } );
+    
+    
+    
+}
+
+
+function origPos(event, ui) {
+	
 }
 
 function handleCardDrop( event, ui ) {
-  var slotTerm = $(this).data( 'term' );
-  var cardTerm = ui.draggable.data( 'term' );
+    
+    console.log(event.target);
+    
 
-  // If the card was dropped to the correct slot,
-  // change the card colour, position it directly
-  // on top of the slot, and prevent it being dragged
-  // again
+//if this slot isn't holding anything else...
+if ($(this).data('holding') === false){
+
+    
+//indicating that its last answer slot is now empty
+    if (ui.draggable.data('answerStack') != null){
+    var oldSlot = ui.draggable.data('answerStack');  
+    $(oldSlot).data('holding',false);  
+    }    
+  
+    
+
+        
+
 	
+  var slotTerm = $(this).data( 'term' );
+console.log("slotterm:");
+	console.log(slotTerm);
+  var cardTerm = ui.draggable[0].innerHTML;
+  console.log("cardTerm");
+	console.log(cardTerm);
+    
+  
 
   if ( slotTerm === cardTerm ) {
 	if (ui.draggable.hasClass('incorrect')) {
@@ -105,13 +205,10 @@ function handleCardDrop( event, ui ) {
 	if (!ui.draggable.hasClass('correct')) {
 		
 		ui.draggable.addClass( 'correct' );
-		correctness[ui.draggable.data('id')] = 1;
+		correctness[this.id] = 1;
 		correctCards++;
 	}
-    //ui.draggable.draggable( 'disable' );
-    //$(this).droppable( 'disable' );
-    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-    ui.draggable.draggable( 'option', 'revert', false );
+    
   }
   else {
 	if (ui.draggable.hasClass('correct')) {
@@ -122,31 +219,28 @@ function handleCardDrop( event, ui ) {
 		ui.draggable.addClass( 'incorrect' );
 		correctness[ui.draggable.data('id')] = 0;
 	}
-    //ui.draggable.draggable( 'disable' );
-    //$(this).droppable( 'disable' );
-    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
-    ui.draggable.draggable( 'option', 'revert', false );
   }
-  
-  // If all the cards have been placed correctly then display a message
-  // and reset the cards for another go
+ 
 
-  /*
-  if ( correctCards === 5 ) {
-    $('#successMessage').show();
-    $('#successMessage').animate( {
-      left: '380px',
-      top: '200px',
-      width: '400px',
-      height: '100px',
-      opacity: 1
+    ui.draggable.position( { of: $(this), my: 'left top', at: 'left top' } );
+   // $(this).droppable('disable');
+      ui.draggable.draggable( { 
+      revert: 'invalid',
+	  drag: handleCardDrag,
     } );
-  }
-  */
+    //indicating that this answer was dropped off at this event's answerslot
+    ui.draggable.data('answerStack', $(this));    
+        
+    //indicating that it's holding something
+    $(this).data('holding',true);
 
 }
+    
+}
+
 
 function handleCardDrag( event, ui ) {
+ 
 	if ($(this).hasClass('incorrect') || $(this).hasClass('correct')) {
 		/*
 		$(this).data("ui-draggable").originalPosition = {
@@ -154,15 +248,48 @@ function handleCardDrag( event, ui ) {
 			left : startPos.left
 		};
 		*/
-		$(this).draggable( 'option', 'revert', true );	
+        $(this).removeClass('incorrect');
+        $(this).removeClass('correct');
+        //TRUE ALLOWS ELEMENT TO BE PLACED ELSEWHERE
+		$(this).draggable( { 
+      cursor: 'move',
+      revert: 'invalid',
+	  drag: handleCardDrag,
+	  start: origPos
+    } );
+       // $(this).draggable('option', 'revert', true);	
 	}
 	
 	//document.getElementById("drag_num").innerHTML = "D = " + ui.name;
 }
 
-function origPos(event, ui) {
-	//startPos = $(this).offset();
+
+
+function handleCardDrag( event, ui ) {
+ 
+	if ($(this).hasClass('incorrect') || $(this).hasClass('correct')) {
+		/*
+		$(this).data("ui-draggable").originalPosition = {
+			top : startPos.top,
+			left : startPos.left
+		};
+		*/
+        $(this).removeClass('incorrect');
+        $(this).removeClass('correct');
+        //TRUE ALLOWS ELEMENT TO BE PLACED ELSEWHERE
+		$(this).draggable( { 
+      cursor: 'move',
+      revert: true,
+	  drag: handleCardDrag,
+	  start: origPos
+    } );
+       // $(this).draggable('option', 'revert', true);	
+	}
+	
+	//document.getElementById("drag_num").innerHTML = "D = " + ui.name;
 }
+
+
 
 function result(f)
 {
@@ -179,30 +306,20 @@ function result(f)
 				
         if (correctness[i] === 1){
 			
-			n=i;
-		    num = random1_array.indexOf(random2_array[n]);
-			
-			//document.getElementById("num").innerHTML = "n = "+ n + "<br> r1 = " + random1_array.indexOf(random2_array[n]) + "<br> num = " + num;
-			
-            //document.getElementById("correct"+num).style.visibility = "visible";
-			document.getElementById("correct_"+num).style.display = "table-cell";
-			//document.getElementById("incorrect"+num).style.visibility = "hidden";
-			document.getElementById("incorrect_"+num).style.display = "none";
+			document.getElementById("correct_"+i).style.display = "table-cell";
+			document.getElementById("incorrect_"+i).style.display = "none";
 			
 			//document.getElementById("incorrect"+num).remove();
 			
             right++;
-			score = score + 100/correctness.length;
+			score = Math.round(score + 100/correctness.length);
         }
 		else {
 			//document.getElementById("incorrect"+i).style.visibility = "visible";
 			
-			n=i;
-		    num = random1_array.indexOf(random2_array[n]);
+			document.getElementById("incorrect_"+i).style.display = "table-cell";
+			document.getElementById("correct_"+i).style.display = "none";
 			
-			document.getElementById("incorrect_"+num).style.display = "table-cell";
-			document.getElementById("correct_"+num).style.display = "none";
-			//document.getElementById("correct"+num).style.visibility = "hidden";
         }
     }
 	
