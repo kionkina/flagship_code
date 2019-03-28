@@ -1,4 +1,16 @@
 --------------------------------------------------------------------------------------
+28-03-2019
+
+* Initiate intermediate ex work
+* Removed hover from adv1 ex
+
+TO DO:
+* Make Adv2 exericse switch between radicals automatically (without deselection)
+* Fix Adv2 dictionary (make characters align with answers)
+* Finish intermediate
+* Change 10 char exercises to 5 char (split into 2 pages)
+* Randomize beg exercise cards
+--------------------------------------------------------------------------------------
 24-03-2019
 
 * Started replacing beginner exercise 

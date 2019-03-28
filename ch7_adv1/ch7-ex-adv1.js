@@ -157,52 +157,12 @@ var all_terms = document.getElementById('terms').getElementsByTagName('td');
 for (var i=0; i < all_terms.length;i++){
     var t = all_terms[i];
      t.addEventListener('click', manage_clicks);
-     t.addEventListener('mouseover', hover);
-     t.addEventListener('mouseout', hover2);
     }
   
     countTime();
 }
-   
-
-function hover(e){
-    
-    //go from neutral to has simplified form
-    if (this.getAttribute('state') == -1) {
-         this.style.color = "mediumseagreen";
-    }
-                               
-     
-    //go from simplified to same 
-    else if(this.getAttribute('state') == 1) { 
-        this.setAttribute('style', 'color: steelblue');
-    }
-    
-    //go from same to simplified
-    else{
-         this.setAttribute('style', 'color: mediumseagreen');
-    }
-};
 
 
-function hover2(e){
-    
-    //go from neutral to has simplified form
-    if (this.getAttribute('state') == -1) {
-         this.style.color = "black";
-    }
-                               
-     
-    //go from simplified to same 
-    else if(this.getAttribute('state') == 1) { 
-        this.setAttribute('style', 'color: mediumseagreen');
-    }
-    
-    //go from same to simplified
-    else{
-         this.setAttribute('style', 'color: steelblue ');
-    }
-};
                                            
 function manage_clicks(e){
     //console.log(this.getAttribute("state"));
