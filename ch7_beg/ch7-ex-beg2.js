@@ -4,9 +4,9 @@ var timeoutID = null;
 var seconds = 0;
 var quz_length = 10;	
 
-var text =  ['台','对','刚','汉','后'];
-var term_array = ['臺', '對','剛','漢','後'];
-var ans_array =   ['台','对','刚','汉','后'];
+var text =  ['开','宝','长','坏', '欢'];
+var term_array = ['開','寶','長','壞', '歡'];
+var ans_array =   ['开','宝','长','坏', '欢'];
 
 var correctness = [0,0,0,0,0];
 

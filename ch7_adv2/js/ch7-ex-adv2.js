@@ -15,8 +15,7 @@ var characters = ['開', '務', '餘', '廣', '雖', '醫', '術', '殺'];
 var answers = [[0,1],[0,1],[0,1],[1,0],[1,0],[1,0,0],[0,1,0],[1,0]];
 
 //every character has a 2D array containing the starting and ending strokes of its radicals
-var answer_key = {}; 
-	//{"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
+var answer_key = {"開":[0,1], "務":[0,1], "餘":[0,1], "廣":[1,0], "雖":[1,0], "醫":[1,0,0], "術":[0,1,0], "殺":[1,0]};
 
 
 var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8,14]], "廣": [[0,2], [3,14]], "雖":[[0,8], [9,16]], "醫":[[0,6], [7,10], [11,17]], "術":[[0,2], [3,7], [8,10]], "殺":[[0,5], [6,9]]};
@@ -24,8 +23,8 @@ var radicals = {"開": [[0,7], [8,11]], "務": [[0,4], [5,10]], "餘": [[0,7],[8
 var user_answers = [];
 
 
-
 function start(){
+	
 	user_answers = [];
 //   characters = shuffle(characters);
     clearInterval();
@@ -35,15 +34,7 @@ function start(){
     seconds = 0;
     score = 100;
     msg = "";
-
-   shuffle(characters, answers);
-	
-	for (var i =0; i<answers.length; i++){
-		answer_key[characters[i]] = answers[i];
-	}
-	
-	
-	
+    	
      document.getElementById("timer").style.display = "inline";   
      document.getElementById("timer2").style.display = "none";   
     
@@ -163,8 +154,7 @@ function click(){
 	
      
      //if not seelcted, change colors and set selected to true
-     if (isSelected == 0 && user_answers[answer_index].toString() == [0,0].toString() ||
-							user_answers[answer_index].toString() == [0,0,0].toString()) {
+     if (isSelected == 0) {
           user_answers[answer_index][rad] = 1;
           rad_group.setAttribute("selected", 1);
           for (var i=0; i<g_tags.length; i++){
