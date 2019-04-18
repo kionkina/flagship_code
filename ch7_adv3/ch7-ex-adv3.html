@@ -45,11 +45,8 @@
     color: white;
 	}
 	
-	.table_e5_width {
-    float: none;
-		left:20% !important;
-    position: relative !important;
-	
+		#above-footer {
+    min-height: 0!important;
 	}
 	
 	input.answer_input{
@@ -70,12 +67,25 @@
 		
 	}
 	
+	.table_e5_width {
+    float: none!important;
+    position: relative!important;
+    left: none!important;
+	left:0!important;
+	}
+	
+
 	a.mark_correct_ex6{
 		visibility: hidden;
 		color: green;
 		display: unset;
 		
 	}
+	
+	.table_e5 td {
+    padding: 4px!important;
+	}
+	
 	
 </style>
 	
@@ -189,7 +199,7 @@
     
 <div class = "wrapper">
 
-<div class="table_e5_width" style="font-size: 50px;" >
+<div class="table_e5_width" style="font-size: 50px; left:0!important!" align="center">
 
 <table id='terms1' class="table_e5" align="center"  style="text-align: center; display:inline-block;"></table>
 	<table id='terms2' class="table_e5" align="center"  style="text-align: center; display: inline-block"></table>

@@ -138,11 +138,12 @@ function start(){
 
 function click(){
  $(".radical_group").click(function(){     
-    	
+    
      var rad = this.getAttribute("rad");
      var char = this.id[0]; 
      var rad_group = document.getElementById(this.id);
      
+	
      
      //checks if the radical was already selected
      var isSelected = rad_group.getAttribute("selected");
@@ -157,25 +158,46 @@ function click(){
      if (isSelected == 0) {
           user_answers[answer_index][rad] = 1;
           rad_group.setAttribute("selected", 1);
-          for (var i=0; i<g_tags.length; i++){
-               //setting the path (firstChild) of each group to the appropriate color in the list
-               g_tags[i].firstChild.setAttribute("fill", "purple")
-               }
-       }//end isSelected == 0
-     
-     //else, set it to false and remove color
-     //set radical's value to 0 in user_answers
-     else if (isSelected == 1) {
-
-         user_answers[answer_index][rad] = 0;
-        rad_group.setAttribute("selected", 0); 
-          for (var i=0; i<g_tags.length; i++){
-        //setting the path (firstChild) of each group to the appropriate color in the list
-         g_tags[i].firstChild.setAttribute("fill", "black")
-        }    
-     }
+          set_col(this.id);
+      
+	 
+		//now deselect all the others, and change ans to 0 (F)
+		 for (var p=0; p<user_answers[answer_index].length; p++){
+			 //leave as 1
+			 if (p==rad){}
+			 else {
+				 deselect_id = char + (parseInt(p));
+				 deselect = document.getElementById(deselect_id); 
+				 var rad_group = document.getElementById(deselect_id);
+				 user_answers[answer_index][p] = 0;
+				 rad_group.setAttribute("selected", 0);
+	     		 set_default(deselect_id);	  
+			 }
+		 } //end p loop
+	 
+	 } //end isSelected == 0
 });
 }
+
+function set_col(id){
+	var rad_group = document.getElementById(id);
+	var g_tags = rad_group.getElementsByTagName("g");
+	 for (var i=0; i<g_tags.length; i++){
+        //setting the path (firstChild) of each group to the appropriate color in the list
+         g_tags[i].firstChild.setAttribute("fill", "purple")
+        }    
+     };
+
+function set_default(id){
+	var rad_group = document.getElementById(id);
+	var g_tags = rad_group.getElementsByTagName("g");
+	 for (var i=0; i<g_tags.length; i++){
+        //setting the path (firstChild) of each group to the appropriate color in the list
+         g_tags[i].firstChild.setAttribute("fill", "bla")
+        }    
+     };
+
+
 
 function result(){
     //console.log("running...");
@@ -248,6 +270,35 @@ function result(){
     $(".radical_group").off("click");
 }
 
+//--------------------------------------------------------------------------------
+	
+	/*
+     
+     //used to select another radical if clicked radical was already selected
+     else if (isSelected == 1) {
+		 //deselect this element
+		 rad_group.setAttribute("selected", 0);
+         user_answers[answer_index][p] = 0;
+		 set_default(this.id);
+	 
+		 //selecting new element
+		 //trying element below first
+		 var other_selection_id = char + (parseInt(rad)-1);
+		 var o_s = document.getElementById(other_selection_id);
+		 //changing to element above if it doesn't work
+		 if (o_s == null){
+			 other_selection_id = char + (parseInt(rad)+1);
+			 o_s = document.getElementById(other_selection_id);
+			 user_answers[answer_index][rad+1] = 1;
+		 }
+		 else {
+		 user_answers[answer_index][rad-1] = 1;
+		 }
+		 var rad_group = document.getElementById(other_selection_id);
+		 rad_group.setAttribute("selected", 1);
+	     set_col(other_selection_id);	
+	 }
+	 */
     
-    
+ //-------------------------------------------------------------------------------   
   
