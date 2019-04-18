@@ -2,6 +2,7 @@
 04-17-2019
 
 *Changed Ch7 Adv2 exercise to switch between radicals on click
+*Added maxlength to Ch7 Inter and Adv3 exercies 
 
 --------------------------------------------------------------------------------------
 04-04-2019

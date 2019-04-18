@@ -94,14 +94,14 @@ var terms2 = document.getElementById("terms2");
 for (var i=0; i<term_array.length/2; i++){
 	
 	terms1.innerHTML += "<tr><td style='text-align: right'  width='10px'><a  class='mark_ex6' href='#'>&#10008;</a><a  class='mark_correct_ex6' href='#'>&#10004;</a></td><td> <div class='e5_width font_kai'>" + "<font color='#484848'>" + (i+1) +  "</font>&nbsp;&nbsp;&nbsp; " +  term_array[i] + 
-	"(" + simplified_array[i]+")"	+"</div></td><td><input type='text' class='answer_input' id='" + i + "'></input></td></tr>";
+	"(" + simplified_array[i]+")"	+"</div></td><td><input type='text' class='answer_input' id='" + i + "' maxlength='2' ></input></td></tr>";
 		
 }
 	
 for (var i=term_array.length/2; i<term_array.length; i++){
 	
 	terms2.innerHTML += "<tr><td style='text-align: right'  width='10px'><a class='mark_ex6' href='#'>&#10008;</a><a class='mark_correct_ex6' href='#'>&#10004;</a></td><td> <div class='e5_width font_kai'>" + "<font color='#484848'>" + (i+1) +  "</font>&nbsp;&nbsp;&nbsp; " +  term_array[i]  + 
-	"(" + simplified_array[i]+")" + "</div></td><td><input type='text' class='answer_input'></input></td></tr>";
+	"(" + simplified_array[i]+")" + "</div></td><td><input type='text' class='answer_input' maxlength='2' ></input></td></tr>";
 		
 }
 
